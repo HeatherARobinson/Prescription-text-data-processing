@@ -26,6 +26,10 @@ entry.date<-ifelse(includes"double",end_date[x-1],entry.date)
 ...
 ##########################################################################################
 
+#Create lookups for STOP commands and EXTRA doses
+
+##########################################################################################
+
 #Deal with solid dose (follow rules from RW)
 
 #Deal with soluble powders
