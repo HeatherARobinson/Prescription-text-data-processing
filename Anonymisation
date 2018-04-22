@@ -8,9 +8,8 @@ string<-gsub('(\\d{3})([[:punct:]])(\\d{3})([[:punct:]])(\\d{4})', "",string, pe
 string<-gsub('(Mrs|Miss,Ms)\\.', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mr|Master)\\.")', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mrs|Miss,Ms)(\\s)', "",string, perl=T,ignore.case = T)
-string<-gsub('(Mr|Master)(\\s)([a-zA-Z])', "",string, perl=T,ignore.case = T)
-
-string<-gsub('(Mr|Master|Mrs)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mrs|Miss,Ms)((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mr|Master)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
 start mr, mr , mrs, mrs ,
 "(Mr|Master|Mrs)\\.")
