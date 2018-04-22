@@ -16,16 +16,31 @@ SLS/HZ*xxxxxx/PI x number can be any length. Can have spaces after slashes
 Sub number x
 Subxxxx
 
-#Deal with change of dose (PRN) -split lines then parse
+###########################################################################################
+#Deal with change of dose (PRN) -split lines then parse:
 
-#Deal with solid dose
+#If doubling
+a<-ifelse(entry.date[x-1]=entry.date& includes"double",2*a[x-1],a)
+entry.date<-ifelse(includes"double",end_date[x-1],entry.date)
+
+...
+##########################################################################################
+
+#Deal with solid dose (follow rules from RW)
 
 #Deal with soluble powders
+sachet
+
+#Deal with liquid dose
+spoonsful, spoonful, drop(s)
 
 #Deal with injectables not in prefilled syringes
 
 #Make provision for inhalers, creams, injections, ointments etc other non solid dose applications
-suck, puff, apply, inhale, rub, use=take
+suck, puff, apply, inhale, puff, rub, spray, use=take
+
+#Indefinite dose
+soap, emollient
 
 #Choice of dose available- assume median as in SIR
 
