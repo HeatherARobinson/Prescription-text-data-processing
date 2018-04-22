@@ -1,0 +1,36 @@
+string <- gsub("experiences", "", string) #This example finds the word experiences in the string column and removes it
+
+#Find NHS numbers entered by GPs and remove them
+gregexpr('(?<!\\d)[0-9]{8}(?!\\d)', string, perl=T) 
+#Match and replace 10 digits in a 3-3-4 format
+string <- gsub("experiences", "", string) #This example finds the word experiences in the string column and removes it
+
+#Find patient names and remove them
+start mr, mr , mrs, mrs ,
+
+#Find DR. identifiers and remove them
+start dr., dr. , dr ,dr,doctor .
+
+#Find clinical study ids and remove them
+SLS/HZ*xxxxxx/PI x number can be any length. Can have spaces after slashes
+Sub number x
+Subxxxx
+
+#Deal with change of dose (PRN) -split lines then parse
+
+#Deal with solid dose
+
+#Deal with soluble powders
+
+#Deal with injectables not in prefilled syringes
+
+#Make provision for inhalers, creams, injections, ointments etc other non solid dose applications
+suck, puff, apply, inhale, rub, use=take
+
+#Choice of dose available- assume median as in SIR
+
+#Titration doses
+
+#Stop references to other prior prescriptions of different drug
+#Change of dosage to existing prescription assumed to have immediate effect where a new dosage prescription is issued
+#if no extra/additional statement is included to suggest additional to existing meds 
