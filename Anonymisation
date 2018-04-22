@@ -4,18 +4,16 @@ string <- gsub("experiences", "", string) #This example finds the word experienc
 string<-gsub('(?<!\\d)[0-9]{10}(?!\\d)', "",string, perl=T)
 string<-gsub('(\\d{3})([[:punct:]])(\\d{3})([[:punct:]])(\\d{4})', "",string, perl=T)
 
-#Find patient names and remove them
-string<-gsub('(Mrs|Miss,Ms)\\.', "",string, perl=T,ignore.case = T)
-string<-gsub('(Mr|Master)\\.")', "",string, perl=T,ignore.case = T)
-string<-gsub('(Mrs|Miss,Ms)(\\s)', "",string, perl=T,ignore.case = T)
+#Find patient names and remove their first 3 letters
+string<-gsub('(Mrs|Miss,Ms)\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mr|Master)\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
+
 string<-gsub('(Mrs|Miss,Ms)((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mr|Master)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
-start mr, mr , mrs, mrs ,
-"(Mr|Master|Mrs)\\.")
-
 #Find DR. identifiers and remove them
-start dr., dr. , dr ,dr,doctor .
+string<-gsub('(Dr|Doctor)\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
+string<-gsub('(Dr|Doctor)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
 #Find clinical study ids and remove them
 SLS/HZ*xxxxxx/PI x number can be any length. Can have spaces after slashes
