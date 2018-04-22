@@ -34,9 +34,45 @@ entry.date<-ifelse(includes"double",end_date[x-1],entry.date)
 
 #Create lookups for STOP commands and EXTRA doses
 
-as well as, in addition, additional, extra, 
+as well as, in addition, additional, extra, ad., add.,add, 
 
 ##########################################################################################
+#Convert shorthands
+tomorrow morning
+c.m, cm, c.m.s.
+
+cochi spoonful
+
+#with food
+cib., cum cibo, c.c.
+
+#One off dose
+bolus, bol.
+
+#Twice a week
+bls. in 7 d.
+
+#4x daily:
+achs
+a.c.h.s
+ac&hs
+
+#2x daily:
+bds,b.d.s.,b.l.s.,bd, bls ind.
+
+1/2 daily:
+alt d,alt.d.,alt.dieb.,dieb. alt, EOD
+
+12 daily:
+alt.h., alt. hor, hor. alt
+
+Continue same
+CST
+
+Half
+dim
+
+#########################################################################################
 
 #Deal with solid dose (follow rules from RW)
 
@@ -49,12 +85,13 @@ spoonsful, spoonful, drop(s)
 #Deal with injectables not in prefilled syringes
 
 #Make provision for inhalers, creams, injections, ointments etc other non solid dose applications
-suck, puff, apply, inhale, puff, rub, spray, use=take
+suck, puff, apply, inhale, puff, rub, spray,AAA,cpt.,cr.,crm,use=take
 
 #Indefinite dose
 soap, emollient
 
 #Choice of dose available- assume median as in SIR
+as required, if needed, ad lib, ad lib.,
 
 #Titration doses
 
