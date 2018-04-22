@@ -44,13 +44,13 @@ c.m, cm, c.m.s.
 cochi spoonful
 
 #with food
-cib., cum cibo, c.c.,p.c.
+cib., cum cibo, c.c.,p.c., w/f
 
 #One off dose
 bolus, bol.
 
 #1X daily
-o.d.,od,o.m.,om,on, o.n.,,q.d.,q.1.d.,qdm,qpm,qad,qam,qdpm,qdam,
+o.d.,od,o.m.,om,on, o.n.,,q.d.,q.1.d.,qdm,qpm,qad,qam,qdpm,qdam,s.i.d.,
 
 #Twice a week
 bls. in 7 d.
@@ -73,6 +73,9 @@ hor. decub., h.s.,noct.,nocte,q.h.s.,q.n.
 #2x daily:
 bds,b.d.s.,b.l.s.,bd, bls ind.
 
+#per week
+qwk
+
 1/2 daily:
 alt d,alt.d.,alt.dieb.,dieb. alt, EOD, q.a.d., qad,qam,q.a.m.,qod,
 
@@ -81,6 +84,12 @@ alt.h., alt. hor, hor. alt,onm bih.,
 
 24 daily:
 omn. hor.,q.h.,
+
+#3x daily
+tds,t.d.s.,tid,t.d.,
+
+#3 per weel
+tiw
 
 Continue same
 CST
@@ -93,6 +102,9 @@ Morning
 
 Max
 NMT,NTE
+
+#w/a
+while awake
 #########################################################################################
 
 #Deal with solid dose (follow rules from RW)
@@ -101,19 +113,19 @@ NMT,NTE
 sachet
 
 #Deal with liquid dose
-spoonsful, spoonful, drop(s)
+spoonsful, spoonful, drop(s), sol., syr., susp.
 
 #Deal with injectables not in prefilled syringes
 IJ, inj., injection
 
 #Make provision for inhalers, creams, injections, ointments etc other non solid dose applications
-suck, puff, apply, inhale, puff, rub, spray,AAA,cpt.,cr.,crm,lot.,lotion,nebul., neb.,use=take
+suck, puff, apply, inhale, puff, rub, spray,AAA,cpt.,nebul., neb.,use=take
 
 #Indefinite dose
-soap, emollient
+soap, emollient, top.,ung., oint.cr.,crm,,lot.,lotion
 
 #Choice of dose available- assume median as in SIR
-as required, if needed, ad lib, ad lib.,q.i.,q.s.,
+as required, if needed, ad lib, ad lib.,q.i.,q.s., si op., sos,sit,ss,SS,SSI
 
 #Titration doses
 
