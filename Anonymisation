@@ -1,7 +1,7 @@
 string <- gsub("experiences", "", string) #This example finds the word experiences in the string column and removes it
 
 #Find NHS numbers entered by GPs and remove them
-gregexpr('(?<!\\d)[0-9]{8}(?!\\d)', string, perl=T) 
+gregexpr('(?<!\\d)[0-9]{10}(?!\\d)', string, perl=T) 
 #Match and replace 10 digits in a 3-3-4 format
 string <- gsub("experiences", "", string) #This example finds the word experiences in the string column and removes it
 
