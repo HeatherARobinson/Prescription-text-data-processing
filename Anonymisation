@@ -5,7 +5,15 @@ string<-gsub('(?<!\\d)[0-9]{10}(?!\\d)', "",string, perl=T)
 string<-gsub('(\\d{3})([[:punct:]])(\\d{3})([[:punct:]])(\\d{4})', "",string, perl=T)
 
 #Find patient names and remove them
+string<-gsub('(Mrs|Miss,Ms)\\.', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mr|Master)\\.")', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mrs|Miss,Ms) ', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mr|Master)(\\s)', "",string, perl=T,ignore.case = T)
+
+string<-gsub('(Mr|Master|Mrs)([[:alpha:]])', "",string, perl=T,ignore.case = T)
+
 start mr, mr , mrs, mrs ,
+"(Mr|Master|Mrs)\\.")
 
 #Find DR. identifiers and remove them
 start dr., dr. , dr ,dr,doctor .
