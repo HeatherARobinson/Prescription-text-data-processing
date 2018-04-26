@@ -26,7 +26,7 @@ Subxxxx
 change, reduce, increase, reducing, increasing, changing, 
 
 #If doubling
-a<-ifelse(entry.date[x-1]=entry.date& includes"double",2*a[x-1],a)
+a<-ifelse(entry.date[x-1]==entry.date& includes"double",2*a[x-1],a)
 entry.date<-ifelse(includes"double",end_date[x-1],entry.date)
 
 ...
@@ -43,8 +43,7 @@ c.m, cm, c.m.s.
 
 cochi spoonful
 
-#with food
-cib., cum cibo, c.c.,p.c., w/f
+
 
 #One off dose
 bolus, bol.
@@ -60,13 +59,16 @@ achs
 a.c.h.s
 ac&hs,
 pc&hs,
+q8h
 
 #ACCOUNTED FOR
 #4 DAILY
 #qds 
 #qid
 #p.c.h.s
+
 #2x daily:
+bid
 #bds,
 #b.d.s.
 #b.l.s.
@@ -75,11 +77,20 @@ pc&hs,
 
 #bedtime
 hor. decub., h.s.,noct.,nocte,q.h.s.,q.n.
+#afternoon
+qpm,pm
 
 #6x daily
-#hor. tert,q.q.h.,
+#hor. tert,q.q.h.,q4h
 
+#8x daily
+q6h,8
 
+#Hourly
+qh,q1h
+
+#Bihourly
+q2h
 
 #per week
 qwk
@@ -103,16 +114,19 @@ Continue same
 CST
 
 Half
-dim
+dim,half,1/2
 
-Morning
-#mane
+Take in the morning
+#mane,qhm
 
 Max
-NMT,NTE
+NMT,NTE,max
 
 #w/a
 while awake
+
+#with/after/before food (3x per day if not already matched)
+cib., cum cibo, c.c.,p.c., w/f,a.c.,with food
 #########################################################################################
 
 #Deal with solid dose (follow rules from RW)
@@ -130,13 +144,13 @@ IJ, inj., injection
 suck, puff, apply, inhale, puff, rub, spray,AAA,cpt.,nebul., neb.,use=take
 
 #Indefinite dose
-soap, emollient, top.,ung., oint.cr.,crm,,lot.,lotion
+soap, emollient, top.,ung., oint.cr.,crm,,lot.,lotion,Q.S.,pr,po,ou,os,gtt,au
 
 #Choice of dose available- assume median as in SIR
-as required, if needed, ad lib, ad lib.,q.i.,q.s., si op., sos,sit,ss,SS,SSI
+as required, if needed, ad lib, ad lib.,q.i.,q.s., si op., sos,sit,ss,SS,SSI,UD,U.D.,prn
 
 #Titration doses
 
 #Stop references to other prior prescriptions of different drug
 #Change of dosage to existing prescription assumed to have immediate effect where a new dosage prescription is issued
-#if no extra/additional statement is included to suggest additional to existing meds 
+#if no extra/additional statement is included to suggest additional to existing meds
