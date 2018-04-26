@@ -59,10 +59,19 @@ bls. in 7 d.
 achs
 a.c.h.s
 ac&hs,
-p.c.h.s,
 pc&hs,
-qds,
-qid
+
+#ACCOUNTED FOR
+#4 DAILY
+#qds 
+#qid
+#p.c.h.s
+#2x daily:
+#bds,
+#b.d.s.
+#b.l.s.
+#bd
+#bls ind.
 
 #bedtime
 hor. decub., h.s.,noct.,nocte,q.h.s.,q.n.
@@ -70,8 +79,7 @@ hor. decub., h.s.,noct.,nocte,q.h.s.,q.n.
 #6x daily
 #hor. tert,q.q.h.,
 
-#2x daily:
-bds,b.d.s.,b.l.s.,bd, bls ind.
+
 
 #per week
 qwk
