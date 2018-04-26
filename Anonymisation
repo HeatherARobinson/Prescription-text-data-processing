@@ -21,9 +21,18 @@ Sub number x
 Subxxxx
 
 ###########################################################################################
-#Deal with change of dose (PRN) -split lines then parse:
+#Deal with change of dose (PRN) -split lines then parse second half:
 
-change, reduce, increase, reducing, increasing, changing, 
+
+string<-str_split(string, " then ",ignore.case = T)[2,]
+#Amend start date
+#Remove second part of first row of each pair, set end date
+
+
+#########################################################################################
+Deal with change, reducing, increasing, changing, 
+
+
 
 #If doubling
 a<-ifelse(entry.date[x-1]==entry.date& includes"double",2*a[x-1],a)
