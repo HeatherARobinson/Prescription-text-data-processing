@@ -1,0 +1,25 @@
+DRUGSTABLE<-yourdata
+
+#IF TOTAL IS GIVEN IN MG IN THE INSTRUCTION, PASTE PROVIDED DAILY DOSE
+DRUGSTABLE$daily_dose
+
+
+#IF INSTRUCTION MATCHES REGEX FIELD, ASSIGN NUMBER OF DOSES PER DAY, DEFAULT=1
+DRUGSTABLE$daily_n<-ifelse(,1,NA)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,1,DRUGSTABLE$daily_n)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,2,DRUGSTABLE$daily_n)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,3,DRUGSTABLE$daily_n)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,4,DRUGSTABLE$daily_n)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,5,DRUGSTABLE$daily_n)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,6,DRUGSTABLE$daily_n)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n),1,DRUGSTABLE$daily_n)
+
+#ADD ANY MULTIPLIER STATEMENTS
+DRUGSTABLE$daily_n<-ifelse(,DRUGSTABLE$daily_n*2,DRUGSTABLE$daily_ne)
+
+
+#CALCULATE TOTAL DAILY DOSE
+DRUGSTABLE$daily_dose<-ifelse(is.na(DRUGSTABLE$daily_dose),DRUGSTABLE$daily_n*DRUGSTABLE$dose_mg,DRUGSTABLE$daily_dose)
+
+
+
