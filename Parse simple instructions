@@ -1,11 +1,17 @@
 DRUGSTABLE<-yourdata
 
 #IF TOTAL IS GIVEN IN MG IN THE INSTRUCTION, PASTE PROVIDED DAILY DOSE
-DRUGSTABLE$daily_dose
+DRUGSTABLE$daily_dose<-ifelse(,,NA)
+
+#PRN DOSING HERE
+#IF MAX SPECIFIED
+DRUGSTABLE$daily_n<-ifelse(regexpr(,DRUGSTABLE$inst)>0,mean(c(1,as.numeric(regmatches()))),NA)
+#NO MAX SPECIFIED
+DRUGSTABLE$daily_n<-ifelse(regexpr(,DRUGSTABLE$inst)>0 & is.na(DRUGSTABLE$daily_n),1,DRUGSTABLE$daily_n)
 
 
 #IF INSTRUCTION MATCHES REGEX FIELD, ASSIGN NUMBER OF DOSES PER DAY, DEFAULT=1
-DRUGSTABLE$daily_n<-ifelse(,1,NA)
+DRUGSTABLE$daily_n<-ifelse(regexpr(,DRUGSTABLE$inst)>0,1,NA)
 DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,1,DRUGSTABLE$daily_n)
 DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,2,DRUGSTABLE$daily_n)
 DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,3,DRUGSTABLE$daily_n)
