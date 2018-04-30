@@ -1,7 +1,7 @@
 DRUGSTABLE<-yourdata
 
 #IF TOTAL IS GIVEN IN MG IN THE INSTRUCTION, PASTE PROVIDED DAILY DOSE
-DRUGSTABLE$daily_dose<-ifelse(,,NA)
+DRUGSTABLE$daily_dose<-ifelse(regexpr("total...mg",DRUGSTABLE$inst),regmatches("total...mg",DRUGSTABLE$inst),NA)
 
 #PRN DOSING HERE
 #IF MAX SPECIFIED
@@ -12,12 +12,31 @@ DRUGSTABLE$daily_n<-ifelse(regexpr(,DRUGSTABLE$inst)>0 & is.na(DRUGSTABLE$daily_
 
 #IF INSTRUCTION MATCHES REGEX FIELD, ASSIGN NUMBER OF DOSES PER DAY, DEFAULT=1
 DRUGSTABLE$daily_n<-ifelse(regexpr(,DRUGSTABLE$inst)>0,1,NA)
-DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,1,DRUGSTABLE$daily_n)
-DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,2,DRUGSTABLE$daily_n)
-DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,3,DRUGSTABLE$daily_n)
-DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,4,DRUGSTABLE$daily_n)
-DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,5,DRUGSTABLE$daily_n)
-DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&,6,DRUGSTABLE$daily_n)
+
+#6
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(,DRUGSTABLE$inst)>0,5,DRUGSTABLE$daily_n)
+
+#5
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(,DRUGSTABLE$inst)>0,5,DRUGSTABLE$daily_n)
+
+#4
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(^(?:TA?K?E? ?)?(?:(?:(?:2|TWO)[ ,\.\-]{0,2}
+(?:TAB(LET)?|CAP(SULE)?|INJ(ECTION)?)?(?:\(S\)|S)?[ ,\.]?(?:TO BE (TAKEN|USED) )?(TWICE)[ ,]{0,2}|(?:4|FOUR)[ ,\.\-]{0,2}(?:TAB(LET)?
+|CAP(SULE)?|INJ(ECTION)?)?(?:\(S\)|S)?[ ,\.]?(?:TO BE (TAKEN|USED) )?(?:ONCE |O )?[ ,]{0,2})(DAILY|(?:EACH |EVERY |\/|[ \.]A[ \.])
+DAY|(?:EACH|EVERY|IN (?:THE|A)?)?[ ,\.]?MORNING(?:$| FOR| TO| \(IP)|(AT |EVERY )?NIGHT|NOCTE|[OE]M$|d$|AT ?[0-9]{0,2} 
+?OCLOCK$|AT BREAKFAST$|MANE)),4,DRUGSTABLE$daily_n)
+
+#3
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(^(?:TA?K?E? ?)?(?:ONE|1|I)?[ ,\.\-]{0,2}
+(?:TAB(LET)?|CAP(SULE)?|INJ(ECTION)?)?(?:\(S\)|S)?[ ,\.\-]{0,2}(?:TO BE (TAKEN|USED) )?(?:(?:THREE|3)
+[ ,]{0,2}(TIMES)? ?((?:ONCE |O )?DAILY|(?:EACH |EVERY |\/|(?:ONCE)?[ \.]A[ \.])DAY|(?:EACH|EVERY|IN (?:THE|A)?)?
+[ ,\.]?MORNING(?:$| FOR| TO| \(IP)|(AT |EVERY )?NIGHT|NOCTE|\/?[O0]D|[OE]M$|d$|AS DIR(?:ECTED)?|AT ?[0-9]{0,2} 
+?OCLOCK$|AT BREAKFAST$|MANE$)|TD),DRUGSTABLE$inst)>0,3,DRUGSTABLE$daily_n)
+
+#2
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(,DRUGSTABLE$inst)>0,2,DRUGSTABLE$daily_n)
+
+#1- ALSO THE DEFAULT
 DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n),1,DRUGSTABLE$daily_n)
 
 #ADD ANY MULTIPLIER STATEMENTS
