@@ -4,14 +4,14 @@ string <- gsub("experiences", "", string) #This example finds the word experienc
 string<-gsub('(?<!\\d)[0-9]{10}(?!\\d)', "",string, perl=T)
 string<-gsub('(\\d{3})([[:punct:]])(\\d{3})([[:punct:]])(\\d{4})', "",string, perl=T)
 
-#Find patient names and remove their first 3 letters
-string<-gsub('(Mrs|Miss,Ms)\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
-string<-gsub('(Mr|Master)\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
+#Find patient names and remove their first 3 letters #NOT YET FUNCTIONAL
+string<-gsub('(Mrs|Miss|Ms)(\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mr|Master)(\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
 
 string<-gsub('(Mrs|Miss,Ms)((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mr|Master)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
-#Find DR. identifiers and remove them
+#Find DR. identifiers and remove them #NOT YET FUNCTIONAL
 string<-gsub('(Dr|Doctor)\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
 string<-gsub('(Dr|Doctor)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
