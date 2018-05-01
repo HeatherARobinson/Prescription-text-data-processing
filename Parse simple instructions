@@ -1,7 +1,7 @@
-DRUGSTABLE<-yourdata
+DRUGSTABLE<-load("yourdata.rda")
 
-#IF TOTAL IS GIVEN IN MG IN THE INSTRUCTION, PASTE PROVIDED DAILY DOSE
-DRUGSTABLE$daily_dose<-ifelse(regexpr("total...mg",DRUGSTABLE$inst),regmatches("total...mg",DRUGSTABLE$inst),NA)
+#IF TOTAL IS GIVEN IN MG IN THE INSTRUCTION, PASTE TOTAL DAILY DOSE
+DRUGSTABLE$daily_dose<-ifelse(grep("total",inst)==1 & grep("mg",inst)==1,regmatches("+mg",DRUGSTABLE$inst),NA)
 
 #PRN DOSING HERE
 #IF MAX SPECIFIED
