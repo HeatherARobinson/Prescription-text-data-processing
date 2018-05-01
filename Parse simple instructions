@@ -14,7 +14,7 @@ DRUGSTABLE$daily_n<-ifelse(regexpr(,DRUGSTABLE$inst)>0 & is.na(DRUGSTABLE$daily_
 DRUGSTABLE$daily_n<-ifelse(regexpr(,DRUGSTABLE$inst)>0,1,NA)
 
 #6
-DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(,DRUGSTABLE$inst)>0,5,DRUGSTABLE$daily_n)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(,DRUGSTABLE$inst)>0,6,DRUGSTABLE$daily_n)
 
 #5
 DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(,DRUGSTABLE$inst)>0,5,DRUGSTABLE$daily_n)
@@ -33,15 +33,35 @@ DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(^(?:TA?K?E? ?)?(?:O
 [ ,\.]?MORNING(?:$| FOR| TO| \(IP)|(AT |EVERY )?NIGHT|NOCTE|\/?[O0]D|[OE]M$|d$|AS DIR(?:ECTED)?|AT ?[0-9]{0,2} 
 ?OCLOCK$|AT BREAKFAST$|MANE$)|TD),DRUGSTABLE$inst)>0,3,DRUGSTABLE$daily_n)
 
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(^(?:TA?K?E? ?,? ?)?(?:ONE|1|I) *(?:OR|-) 
+*(?:TWO|2)[ ,\.]{0,2}(?:(?:TAB(LET)?|CAP(SULE)|?INJ(ECTION)?)(?:\(S\)|S)?)?[ ,\.]{0,2}(?:TO BE (TAKEN|USED) 
+)?[ ,]{0,2}(?:(2|TWO|TWICE)[ ,]{0,2}(TIMES)?(DAILY|(?:EACH |EVERY |\/|A )DAY|(?:EACH|EVERY|IN (?:THE|A)?)?[ ,\.]
+?MORNING(?:$| FOR| TO| \(IP)|(AT |EVERY )?NIGHT|NOCTE|\/?[O0]D|[OE]M$|d$|AS DIR(?:ECTED)?|AT ?[0-9]{0,2} ?OCLOCK$|
+AT BREAKFAST$|MANE$)|BD),DRUGSTABLE$inst)>0,3,DRUGSTABLE$daily_n)
+
 #2
-DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(,DRUGSTABLE$inst)>0,2,DRUGSTABLE$daily_n)
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(^(?:TA?K?E? ?,? ?)?(?:ONE|1|I)?[ ,\.]{0,2}(?:(?:TAB(LET)?|CAP(SULE)|
+?INJ(ECTION)?)(?:\(S\)|S)?)?[ ,\.]{0,2}(?:TO BE (TAKEN|USED) )?[ ,]{0,2}(?:(2|TWO|TWICE)[ ,]{0,2}(TIMES)? ?(?:TO BE TAKEN )?
+((?:ONCE |O )?DAILY|(?:EACH |EVERY |\/|(?:ONCE)?[ \.]A[ \.])DAY|(?:EACH|EVERY|IN (?:THE|A)?)?[ ,\.]?MORNING(?:$| FOR| TO| \(IP)|(AT |
+EVERY )?NIGHT|NOCTE|\/?[O0]D|[OE]M$|d$|AS DIR(?:ECTED)?|AT ?[0-9]{0,2} ?OCLOCK$|AT BREAKFAST$|MANE$)|BD),DRUGSTABLE$inst)>0,2,
+DRUGSTABLE$daily_n)
+
+#1.5
+DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n)&regexpr(^(?:TA?K?E? ?,? ?)?(?:ONE|1|I) *(?:OR|-) *(?:TWO|2)[ ,\.\-]{0,2}(?:(?:TAB(LET)?|
+CAP(SULE)|?INJ(ECTION)?)(?:\(S\)|S)?)?[ ,\.]{0,2}(?:TO BE (TAKEN|USED) )?(?:(?:ONCE |O |TO BE TAKEN )?DAILY|(?:DAILY )?(?:EACH|EVERY|
+IN (?:THE|A)?)?[ ,\.]?(?:MO[RN]{2}ING|AM)|(?:EACH |EVERY |\/|(?:ONCE)?[ \.]A[ \.])DAY|(?:DAILY )?(AT |EVERY )?NIGHT|NOCTE|\/?[O0]D|
+[OE]M|d|AS DIR(?:ECTED)?|AT (?:[0-9]* ?OCLOCK|BREAKFAST)|MANE)\.?,?(?:$| FOR| TO| \(| *MITTE| *INSTALMENT| *NOTE| *PLEASE| *AT| ?:|
+\/MORNING| HALF TO ONE HOUR| (?:(?:IN ){1,2}(?:THE)? |EACH |EVERY )(?:MORNING|AM)| SWALLOW| XL| AS ?D| WITH| TELL| SUPPLY| WHEN),
+DRUGSTABLE$inst)>0,1.5,DRUGSTABLE$daily_n)
 
 #1- ALSO THE DEFAULT
 DRUGSTABLE$daily_n<-ifelse(is.na(DRUGSTABLE$daily_n),1,DRUGSTABLE$daily_n)
 
 #ADD ANY MULTIPLIER STATEMENTS
 DRUGSTABLE$daily_n<-ifelse(,DRUGSTABLE$daily_n*2,DRUGSTABLE$daily_ne)
+#HALVES
 
+#X PER WEEK
 
 #CALCULATE TOTAL DAILY DOSE
 DRUGSTABLE$daily_dose<-ifelse(is.na(DRUGSTABLE$daily_dose),DRUGSTABLE$daily_n*DRUGSTABLE$dose_mg,DRUGSTABLE$daily_dose)
