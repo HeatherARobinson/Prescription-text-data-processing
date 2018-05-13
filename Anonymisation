@@ -1,28 +1,28 @@
+#EXAMPLE OF LOGIC STRING
 string <- gsub("experiences", "", string) #This example finds the word experiences in the string column and removes it
 
-#Find NHS numbers entered by GPs and remove them
+#Find NHS numbers entered by GPs and remove them #FUNCTIONAL
 string<-gsub('(?<!\\d)[0-9]{10}(?!\\d)', "",string, perl=T)
 string<-gsub('(\\d{3})([[:punct:]])(\\d{3})([[:punct:]])(\\d{4})', "",string, perl=T)
 
+#IDEALLY WE WOULD MATCH PATIENT NAME AND REMOVE THE TITLE AND FOLLOWING WORD.
 #Find patient names and remove their first 3 letters #NOT YET FUNCTIONAL
 string<-gsub('(Mrs|Miss|Ms)(\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mr|Master)(\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
-
 string<-gsub('(Mrs|Miss,Ms)((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mr|Master)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
-#Find DR. identifiers and remove them #NOT YET FUNCTIONAL
+#Find DR. identifiers and remove them with following word #NOT YET FUNCTIONAL
 string<-gsub('(Dr|Doctor)\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
 string<-gsub('(Dr|Doctor)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
-#Find clinical study ids and remove them
+#Find clinical study ids and remove them #NOT YET FUNCTIONAL
 SLS/HZ*xxxxxx/PI x number can be any length. Can have spaces after slashes
 Sub number x
 Subxxxx
 
 ###########################################################################################
 #Deal with change of dose (PRN) -split lines then parse second half:
-
 
 string<-str_split(string, " then ",ignore.case = T)[2,]
 #Amend start date
