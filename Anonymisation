@@ -1,4 +1,4 @@
-#EXAMPLE OF LOGIC STRING
+EXAMPLE OF LOGIC STRING
 string <- gsub("experiences", "", string) #This example finds the word experiences in the string column and removes it
 
 #Find NHS numbers entered by GPs and remove them #FUNCTIONAL
@@ -6,44 +6,59 @@ string<-gsub('(?<!\\d)[0-9]{10}(?!\\d)', "",string, perl=T)
 string<-gsub('(\\d{3})([[:punct:]])(\\d{3})([[:punct:]])(\\d{4})', "",string, perl=T)
 
 #IDEALLY WE WOULD MATCH PATIENT NAME AND REMOVE THE TITLE AND FOLLOWING WORD.
-#Find patient names and remove their first 3 letters #NOT YET FUNCTIONAL
-string<-gsub('(Mrs|Miss|Ms)(\\.")((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
-string<-gsub('(Mr|Master)(\\.")((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
+#Find patient names and remove their first 3 letters #FUNCTIONAL
+#CONSIDERS TITLE FOLLOWED BY PUNCTUATION MARK OR NOT, EITHER CASE
+string<-gsub('(Mrs|Miss|Ms)(\\.)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mr|Master)(\\.)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mrs|Miss,Ms)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mr|Master)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
 #Find DR. identifiers and remove them with following word #NOT YET FUNCTIONAL
-string<-gsub('(Dr|Doctor)\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
-string<-gsub('(Dr|Doctor)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
+string<-gsub('(Dr|Doctor)(\\.")(\\s)([[:alpha:]]))', "",string, perl=T,ignore.case = T)
+string<-gsub('(Dr|Doctor)((\\s)[[:alpha:]])', "",string, perl=T,ignore.case = T)
 
 #Find clinical study ids and remove them #NOT YET FUNCTIONAL
+
 SLS/HZ*xxxxxx/PI x number can be any length. Can have spaces after slashes
 Sub number x
 Subxxxx
 
 ###########################################################################################
-#Deal with change of dose (PRN) -split lines then parse second half:
+#Deal with change of dose (PRN) -split lines then parse second half: #NOT YET FUNCTIONAL
+#LOOK INTO DIFF BETWEEN str_split and strsplit
+thens<-table of all instructions including then #NEEDS WRITING
 
-string<-str_split(string, " then ",ignore.case = T)[2,]
-#Amend start date
-#Remove second part of first row of each pair, set end date
+string<-"example of instruction then second instruction"
+temp<-str_split(string, " then ",ignore.case = T)
+mat<- matrix(unlist(temp), ncol=2, byrow=TRUE)
+df <- as.data.frame(mat)
+df <- cbind(df, thens)
 
+#COPY ALL ROWS, REPLACE INSTRUCTION WITH V1 IN THE FIRST COPY AND WITH V2 IN THE SECOND COPY #NEEDS WRITING
+#UPDATE START AND END DATES IN BOTH COPIES
 
 #########################################################################################
-Deal with change, reducing, increasing, changing, 
+Deal with reducing, increasing, changing, titration if possible? #NEEDS WRITING
 
-
+#Id reducing/increasing extract new dosage
 
 #If doubling
 a<-ifelse(entry.date[x-1]==entry.date& includes"double",2*a[x-1],a)
 entry.date<-ifelse(includes"double",end_date[x-1],entry.date)
 
+#If halving
+
 ...
 ##########################################################################################
 
-#Create lookups for STOP commands and EXTRA doses
+#Create lookups for STOP commands for other doses, and additional of EXTRA doses (e.g. in addition to venalink/prefilled box)
 
 as well as, in addition, additional, extra, ad., add.,add, 
+
+#Stop references to other prior prescriptions of different drug
+#Change of dosage to existing prescription assumed to have immediate effect where a new dosage prescription is issued
+#if no extra/additional statement is included to suggest additional to existing meds
+
 
 ##########################################################################################
 #Convert shorthands
@@ -51,8 +66,6 @@ tomorrow morning
 c.m, cm, c.m.s.
 
 cochi spoonful
-
-
 
 #One off dose
 bolus, bol.
@@ -70,7 +83,7 @@ ac&hs,
 pc&hs,
 q8h
 
-#ACCOUNTED FOR
+#ACCOUNTED FOR IN REGEX
 #4 DAILY
 #qds 
 #qid
@@ -138,7 +151,7 @@ while awake
 cib., cum cibo, c.c.,p.c., w/f,a.c.,with food
 #########################################################################################
 
-#Deal with solid dose (follow rules from RW)
+#Deal with solid dose (follow existing rules already established in REM)
 
 #Deal with soluble powders
 sachet
@@ -157,9 +170,3 @@ soap, emollient, top.,ung., oint.cr.,crm,,lot.,lotion,Q.S.,pr,po,ou,os,gtt,au
 
 #Choice of dose available- assume median as in SIR
 as required, if needed, ad lib, ad lib.,q.i.,q.s., si op., sos,sit,ss,SS,SSI,UD,U.D.,prn
-
-#Titration doses
-
-#Stop references to other prior prescriptions of different drug
-#Change of dosage to existing prescription assumed to have immediate effect where a new dosage prescription is issued
-#if no extra/additional statement is included to suggest additional to existing meds
