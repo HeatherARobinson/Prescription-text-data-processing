@@ -7,9 +7,9 @@ string<-gsub('(\\d{3})([[:punct:]])(\\d{3})([[:punct:]])(\\d{4})', "",string, pe
 
 #IDEALLY WE WOULD MATCH PATIENT NAME AND REMOVE THE TITLE AND FOLLOWING WORD.
 #Find patient names and remove their first 3 letters #NOT YET FUNCTIONAL
-string<-gsub('(Mrs|Miss|Ms)(\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
-string<-gsub('(Mr|Master)(\\.")((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
-string<-gsub('(Mrs|Miss,Ms)((\\s)[[:alpha:]]{3}))', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mrs|Miss|Ms)(\\.")((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mr|Master)(\\.")((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
+string<-gsub('(Mrs|Miss,Ms)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 string<-gsub('(Mr|Master)((\\s)[[:alpha:]]{3})', "",string, perl=T,ignore.case = T)
 
 #Find DR. identifiers and remove them with following word #NOT YET FUNCTIONAL
