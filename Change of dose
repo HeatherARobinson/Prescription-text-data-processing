@@ -1,0 +1,33 @@
+###########################################################################################
+#Deal with change of dose (PRN) -split lines then parse second half: #NEEDS TESTING
+
+thens<-thens<-drugstable[grepl(" then ",drugstable$string,] #table of all instructions including "then" 
+string<-"example of instruction then second instruction"
+temp<-str_split(string, " then ",ignore.case = T)
+mat<- matrix(unlist(temp), ncol=2, byrow=TRUE)
+df <- as.data.frame(mat)
+df <- cbind(df, thens)
+###########################################################################################
+#COPY ALL ROWS, REPLACE INSTRUCTION WITH V1 IN THE FIRST COPY AND WITH V2 IN THE SECOND COPY #NEEDS WRITING
+
+#UPDATE START AND END DATES IN BOTH COPIES
+#############################################################################################
+#NEED TO REPEAT THE ABOVE WITH "AFTER" AS THE SYNTAX STRUCTURE IS DIFFERENT- 
+#THE NUMBER OF DAYS FOR INSTRUCTION ONE IS GIVEN AFTER "AFTER", NOT BEFORE AS WITH "THEN"
+
+afters<-afters<-drugstable[grepl(" after ",drugstable$string,] #table of all instructions including "after" 
+temp2<-str_split(string, "(space)("after")(space)(number 1:100)("days"|"weeks")",ignore.case = T)#NEEDS CODING FROM LOGIC
+mat2<- matrix(unlist(temp2), ncol=2, byrow=TRUE)
+df2 <- as.data.frame(mat2)
+df2 <- cbind(df2, thens)
+
+#########################################################################################
+Deal with reducing, increasing, changing, titration if possible? #NEEDS WRITING
+#If reducing/increasing extract new dosage
+
+#If doubling
+
+a<-ifelse(entry.date[x-1]==entry.date& includes"double",2*a[x-1],a)
+entry.date<-ifelse(includes"double",end_date[x-1],entry.date)
+
+#If halving
