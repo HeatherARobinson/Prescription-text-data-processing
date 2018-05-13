@@ -40,15 +40,16 @@ df <- cbind(df, thens)
 #########################################################################################
 Deal with reducing, increasing, changing, titration if possible? #NEEDS WRITING
 
+changes<-rbind(thens,afters)
 #Id reducing/increasing extract new dosage
 
-#If doubling
-a<-ifelse(entry.date[x-1]==entry.date& includes"double",2*a[x-1],a)
-entry.date<-ifelse(includes"double",end_date[x-1],entry.date)
+#########################################################################################
+#If doubling/having, change dose in the second copy within then or after #NEEDS TESTING
 
+changes$DAILY_DOSE<-ifelse(entry.date[x-1]==entry.date& PatientID[x-1]==PatientID & TYPE[x-1]==TYPE&grepl("double",string),2*changes$DAILY_DOSE[x-1],changes$DAILY_DOSE)
 #If halving
+changes$DAILY_DOSE<-ifelse(entry.date[x-1]==entry.date& PatientID[x-1]==PatientID & TYPE[x-1]==TYPE&grepl("halve",string),2*changes$DAILY_DOSE[x-1],changes$DAILY_DOSE)
 
-...
 ##########################################################################################
 
 #Create lookups for STOP commands for other doses, and additional of EXTRA doses (e.g. in addition to venalink/prefilled box)
