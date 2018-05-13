@@ -1,4 +1,4 @@
-###########################################################################################
+#####################################################################################################################################################################################
 #Deal with change of dose (PRN) -split lines then parse second half: #NEEDS TESTING
 
 thens<-thens<-drugstable[grepl(" then ",drugstable$string,] #table of all instructions including "then" 
@@ -25,9 +25,10 @@ df2 <- cbind(df2, thens)
 Deal with reducing, increasing, changing, titration if possible? #NEEDS WRITING
 #If reducing/increasing extract new dosage
 
-#If doubling
-
-a<-ifelse(entry.date[x-1]==entry.date& includes"double",2*a[x-1],a)
-entry.date<-ifelse(includes"double",end_date[x-1],entry.date)
-
+#########################################################################################
+#If doubling/having, change dose in the second copy within then or after #NEEDS TESTING
+#if doubling
+changes$DAILY_DOSE<-ifelse(entry.date[x-1]==entry.date& PatientID[x-1]==PatientID & TYPE[x-1]==TYPE&grepl("double",string),2*changes$DAILY_DOSE[x-1],changes$DAILY_DOSE)
 #If halving
+changes$DAILY_DOSE<-ifelse(entry.date[x-1]==entry.date& PatientID[x-1]==PatientID & TYPE[x-1]==TYPE&grepl("halve",string),2*changes$DAILY_DOSE[x-1],changes$DAILY_DOSE)
+
